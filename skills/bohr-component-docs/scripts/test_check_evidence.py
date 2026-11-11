@@ -1,5 +1,6 @@
 """Synthetic record tests; these do not validate Figma or online collection."""
 import json
+import copy
 from pathlib import Path
 import tempfile
 import unittest
@@ -26,6 +27,17 @@ class EvidenceTests(unittest.TestCase):
                  {"path": "synthetic.txt", "sha256": digest(self.raw),
                   "kind": c["evidence_kind"], "locator": "synthetic observation"}]}
             for c in self.contract["checks"]]}
+        self.contract['checks'][4]['platform'] = 'Web'
+        self.report['checks'][4]['execution'] = {
+            'state': 'observed', 'entry': 'synthetic://menu',
+            'action': 'open menu', 'date': '2026-11-11',
+            'before': 'closed', 'after': 'open'}
+        desktop = copy.deepcopy(self.contract['checks'][4])
+        desktop.update(id='D-desktop', platform='Desktop')
+        result = copy.deepcopy(self.report['checks'][4])
+        result['id'] = 'D-desktop'
+        self.contract['checks'].append(desktop)
+        self.report['checks'].append(result)
 
     def run_check(self):
         cp, rp = self.root / "contract.json", self.root / "report.json"

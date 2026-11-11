@@ -33,6 +33,7 @@ def validate(contract_path, report_path):
         raise ValueError("输入必须为对象")
     expected, results = index(c.get("checks")), index(r.get("checks"))
     errors = []
+    errors.extend(validate_online_execution(expected, results))
     errors.extend(validate_business_scenarios(c, expected))
     if not c.get("scope"):
         errors.append("缺任务范围")
@@ -105,6 +106,39 @@ def validate(contract_path, report_path):
             errors.append(key + ": 原始证据类型不匹配")
     return {"record_check": "未通过" if errors else "通过", "errors": errors,
             "checked_items": len(expected), "component_acceptance": "需结合实际证据人工判定"}
+
+
+def validate_online_execution(checks, results):
+    """Validate explicit per-platform attempts, not the truth of tool observations."""
+    errors = []
+    online = [item for item in checks.values() if item.get('group') == 'D']
+    platforms = {item.get('platform') for item in online if isinstance(item.get('platform'), str)}
+    if platforms != {'Web', 'Desktop'}:
+        errors.append('D: 须分别登记Web和Desktop；不适用也须保留理由')
+    for item in online:
+        key = item['id']
+        if item.get('platform') not in ('Web', 'Desktop'):
+            errors.append(key + ': 无效端侧platform')
+        if item.get('applicable') is not True:
+            continue  # Existing applicability/status gate checks the exemption.
+        if item.get('evidence_kind') != 'raw-online':
+            errors.append(key + ': 端侧检查必须使用raw-online')
+        row = results.get(key, {})
+        execution = row.get('execution')
+        if not isinstance(execution, dict):
+            errors.append(key + ': 缺端侧执行记录，不能以未验证替代尝试')
+            continue
+        state = execution.get('state')
+        if state not in ('observed', 'blocked', 'not-found', 'not-attempted'):
+            errors.append(key + ': 无效执行状态')
+        if state != 'observed':
+            errors.append(key + ': 端侧验证未完成（' + str(state) + '）')
+        fields = ('entry', 'action', 'date', 'before', 'after') if state == 'observed' else ('entry', 'action', 'date', 'recovery')
+        for field in fields:
+            value = execution.get(field)
+            if not isinstance(value, str) or not value.strip():
+                errors.append(key + ': 执行记录缺' + field)
+    return errors
 
 
 def validate_business_scenarios(contract, checks):
