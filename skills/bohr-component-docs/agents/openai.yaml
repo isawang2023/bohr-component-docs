@@ -1,4 +1,4 @@
 interface:
-  display_name: "玻尔组件搭建与文档"
+  display_name: "玻尔组件"
   short_description: "从现有设计抽取玻尔组件，统一命名、状态、实例与 Token，并整理组件文档"
   default_prompt: "使用 $bohr-component-docs 处理指定组件。先读取 SKILL.md，按用户目标确定范围并核对当前平台能力；仅加载本次适用说明，执行取源、授权修改、独立读回与分项验收。保留原稿和用户改动，明确未完成项；局部请求不扩为整页。"
