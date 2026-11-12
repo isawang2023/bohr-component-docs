@@ -47,8 +47,10 @@
 
 ## 批准来源
 
-1. 先用 `figma_get_libraries` 读取当前文件可用库，再以当前团队的 Bohrium Design System 库为唯一默认来源。当前文件在 2026-10-28 读取到的库名为 `Bohrium Design System 1.0.0`；库 key、发布状态和可用性每次任务都要重新读取，不能把本记录当作永久配置。
-2. 用 `figma_search_design_system` 按语义和完整名称搜索目标图标，记录返回的 `libraryKey`、`componentKey`、组件名称和查询词。搜索到的 `Icon/...` 组件只能作为 `Bohr icon/Wrapper` 的 `Bohr icon` 属性值，不能直接放到业务组件中。
+以下工具名是已用环境的示例；其他平台按 [能力映射](platform-compatibility.md#操作规范与能力映射) 查当前接口，仍须返回同等来源证据，不编造工具调用或字段。
+
+1. 先用可列出当前可用库的工具（例如 `figma_get_libraries`）读取当前文件可用库，再以当前团队的 Bohrium Design System 库为唯一默认来源。当前文件在 2026-10-28 读取到的库名为 `Bohrium Design System 1.0.0`；库 key、发布状态和可用性每次任务都要重新读取，不能把本记录当作永久配置。
+2. 用设计库检索工具（例如 `figma_search_design_system`）按语义和完整名称搜索目标图标，记录返回的 `libraryKey`、`componentKey`、组件名称和查询词。搜索到的 `Icon/...` 组件只能作为 `Bohr icon/Wrapper` 的 `Bohr icon` 属性值，不能直接放到业务组件中。
 3. 业务组件中的线性功能图标最终结构必须是 `Bohr icon/Wrapper` 实例，且其 `componentProperties` 中存在 `Bohr icon#...` 的 `INSTANCE_SWAP` 属性，值指向批准的 Bohrium 图标组件。`IconPlaceholder → HugeIcon`、直接 `Icon/...`、直接 `folder` 等均为错误绑定位置，即使外观正确也失败。
 4. 预览中必须是可追溯的 `INSTANCE`。实例的 `mainComponent.remote`、`mainComponent.key`、组件名称和库搜索结果要能互相对应。嵌套实例要记录从业务组件到 `Bohr icon/Wrapper` 再到最终图标实例的链路。
 

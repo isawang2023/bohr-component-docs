@@ -1,6 +1,6 @@
 # 组件抽取与状态验收
 
-用户要求把已有设计搭成可复用组件时使用；与 figma-use、figma-generate-library 一起执行。抽取不是自动推断业务，也不是组件文档排版。
+用户要求把已有设计搭成可复用组件时使用；按 [平台能力核对](platform-compatibility.md#操作规范与能力映射) 加载 Figma 读取、写入与组件构建操作规范；有 figma-use、figma-generate-library 时必须读取。抽取不是自动推断业务，也不是组件文档排版。
 
 ## 写入前锁定
 
