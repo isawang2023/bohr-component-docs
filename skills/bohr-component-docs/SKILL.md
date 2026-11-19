@@ -27,7 +27,7 @@ description: Use when 用户要求生成、抽取、搭建、整理或修复玻�
 | 局部文字、属性、图标或主题修复 | 对应下列主题细则；写入前读 [执行检查](references/execution-checks.md) | 只列受影响项；原稿保护与相关红线仍适用 |
 | 中文翻译或说明修改 | [翻译](references/translation.md)；文档内容要求见 [内容字段](references/document-template.md#内容字段与画布映射) | 保留英文技术键值、版权和链接；无英文标新增整理 |
 | 组织或修改 Figma 文档 | [内容与视觉模板](references/document-template.md)、[Button 模板](references/bohrium-button-template.md) | Bohrium 复用已指定 Button；其他库用其已确认模板，批量共用一个版本 |
-| 整页整理、形成规范或补齐文档 | [交付约定](references/delivery-standard.md)、上一行及 [整页区域与导航](references/page-completeness.md) | 资产矩阵、属性、完整案例、Light/Dark 与导航均检查；新增业务案例不抵消基础缺项 |
+| 整页整理、形成规范或补齐文档 | [交付约定](references/delivery-standard.md)、上一行及 [整页区域与导航](references/page-completeness.md) | 资产矩阵、属性、完整案例与导航均检查；主题按各交付根的批准范围核对，不将状态矩阵的 Light/Dark 要求套入业务规则页；新增业务案例不抵消基础缺项 |
 | 创建、整理或获准修复命名 | [命名与唯一路径](references/figma-naming.md) | 读取现有族名，递归核对依赖；未读全不称全库唯一 |
 | 抽取、搭建或补齐组件状态 | [组件抽取与实例验收](references/component-extraction.md)及命名规则 | 按 [能力核对](references/platform-compatibility.md#操作规范与能力映射) 加载构建操作规范；真实实例验证属性、默认值与编辑 |
 | 从页面或模块抽样 | [模块抽样](references/module-sampling.md) | 区分基础、组合、模块预设与局部例外，不直接升级为公共规则 |
