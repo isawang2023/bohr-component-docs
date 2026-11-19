@@ -27,18 +27,20 @@ description: Use when 用户要求生成、抽取、搭建、整理或修复玻�
 | 局部文字、属性、图标或主题修复 | 对应下列主题细则；写入前读 [执行检查](references/execution-checks.md) | 只列受影响项；原稿保护与相关红线仍适用 |
 | 中文翻译或说明修改 | [翻译](references/translation.md)；文档内容要求见 [内容字段](references/document-template.md#内容字段与画布映射) | 保留英文技术键值、版权和链接；无英文标新增整理 |
 | 组织或修改 Figma 文档 | [内容与视觉模板](references/document-template.md)、[Button 模板](references/bohrium-button-template.md) | Bohrium 复用已指定 Button；其他库用其已确认模板，批量共用一个版本 |
-| 整页整理、形成规范或补齐文档 | 上一行及 [整页区域与导航](references/page-completeness.md) | 资产矩阵、属性、完整案例、Light/Dark 与导航均检查；新增业务案例不抵消基础缺项 |
+| 整页整理、形成规范或补齐文档 | [交付约定](references/delivery-standard.md)、上一行及 [整页区域与导航](references/page-completeness.md) | 资产矩阵、属性、完整案例、Light/Dark 与导航均检查；新增业务案例不抵消基础缺项 |
 | 创建、整理或获准修复命名 | [命名与唯一路径](references/figma-naming.md) | 读取现有族名，递归核对依赖；未读全不称全库唯一 |
 | 抽取、搭建或补齐组件状态 | [组件抽取与实例验收](references/component-extraction.md)及命名规则 | 按 [能力核对](references/platform-compatibility.md#操作规范与能力映射) 加载构建操作规范；真实实例验证属性、默认值与编辑 |
 | 从页面或模块抽样 | [模块抽样](references/module-sampling.md) | 区分基础、组合、模块预设与局部例外，不直接升级为公共规则 |
 | 涉及图标引入、替换、缩放或主题 | [图标来源与引入检查](references/icon-provenance.md)；按其中指引读取缩放、颜色流程 | 相关变体、隐藏状态、Wrapper、实际几何与颜色均核对 |
-| 涉及业务场景或组件选择 | [场景证据](references/scenario-evidence.md)、[公共依据](references/shared-rules.md) | 完整业务片段才算案例；逐端先尝试取源，不以未尝试冒充受阻 |
+| 涉及业务场景或组件选择 | [场景证据](references/scenario-evidence.md)、[公共依据](references/shared-rules.md) | 完整业务片段才算案例；先核对可复用原始证据，缺失时逐端实际取源，不以未尝试冒充受阻 |
 | 输出 Markdown 专文 | [专文格式](references/markdown-output.md) | 六段内容覆盖，不套画布的预览容器和视觉模板要求 |
 | 修改本 Skill 或验证跨组件一致性 | [维护与验证](validation/README.md) | 历史材料仅用于回归，不证明当前版本通过 |
 
 同一任务可命中多行，合并必读文件。按需读取不等于把相关检查设为不适用；不适用必须有范围依据。
 
 ## 执行顺序
+
+完整组件交付按 [三项内容与版式约定](references/delivery-standard.md#三项内容与版式约定) 执行：英文逐段忠实翻译、主动核对玻尔 Web/Desktop 真实业务、规则与示例分别对齐 Button。开工锁定范围，制作中保留对应关系，交付前集中对照；不另起重复验收流程。
 
 1. **锁定任务。** 保存范围、三类参照（视觉模板、组件能力与案例、线上来源）、案例与状态映射、平台和适用检查项。无正式模板先做盘点与一个候选，确认前不批量套版。
 2. **取源并分流。** 读取实际内容、属性、默认值、实例链及当前用户修改。缺陷按源组件、文档、待确认业务分流；源问题登记，授权内文档问题本次修复，未定义业务不猜测。
@@ -49,6 +51,8 @@ description: Use when 用户要求生成、抽取、搭建、整理或修复玻�
 每步都保存产出：任务清单 → 原始取源与分流 → 内容和场景映射 → 实际产物与独立读回 → 验收结果。缺产出即该步未完成。业务案例登记 `deliverables: ["business-cases"]` 及逐场景结构，详见任务清单。
 
 ## 继续执行与完成判定
+
+交付与检查在本 Skill 内完成，日常整理不额外调用 `component-acceptance-tracking` 再验一轮；仅在用户明确要求台账复核、历史缺口或阶段接续时使用追踪 Skill。当前流程不要求调用预算门禁。
 
 有安全可执行缺口就继续，不能以数量达标、部分生成、列出缺口或校验器运行完作为收尾。字体或某端受阻仅挂起受影响路径，继续其他工作；恢复步骤和停止门槛见 [执行检查](references/execution-checks.md#持续执行与停止门槛)。
 
